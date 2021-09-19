@@ -26,10 +26,10 @@ jobs:
       uses: NuGet/setup-nuget@v1.0.5
     
     - name: Restore dependencies
-      run: nuget restore rpf2fivem.sln
+      run: nuget restore ytd2large.sln
       
     - name: Build App
-      run: msbuild rpf2fivem.sln /p:Configuration=Release
+      run: msbuild ytd2large.sln /p:Configuration=Release
       
     - name: Test
-      run: dotnet test rpf2fivem.sln --no-build --verbosity normal
+      run: dotnet test ytd2large.sln --no-build --verbosity normal
