@@ -1,0 +1,35 @@
+name: .NET
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+        
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.0.2
+       
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.5
+    
+    - name: Restore dependencies
+      run: nuget restore rpf2fivem.sln
+      
+    - name: Build App
+      run: msbuild rpf2fivem.sln /p:Configuration=Release
+      
+    - name: Test
+      run: dotnet test rpf2fivem.sln --no-build --verbosity normal

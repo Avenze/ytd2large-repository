@@ -1,0 +1,338 @@
+[09/17/2021 06:09:22] [INFO] rpf2fivem
+
+[09/17/2021 06:09:22] [INFO] ---------------
+
+[09/17/2021 06:09:22] [INFO] Developed by Avenzey#6184 (thanks to https://github.com/vscorpio for developing the original version!)
+
+[09/17/2021 06:09:22] [INFO] GitHub repository: https://github.com/Avenze/rpf2fivem-repository
+
+[09/17/2021 06:09:22] [INFO] Discord support: https://discord.gg/C4e4q6g
+
+[09/17/2021 06:09:22] [INFO] ---------------
+
+[09/17/2021 06:09:22] [INFO] GTA5-Mods links must look like this: 
+
+[09/17/2021 06:09:22] [INFO] https://files.gta5-mods.com/uploads/XXXCARNAMEXXXX/XXXCARNAMEXXXX.zip
+
+[09/17/2021 06:09:22] [INFO] Links must be DIRECT link else they won't download!
+
+[09/17/2021 06:09:22] [WARNING] [NConvert] It seems like you haven't installed NConvert, please follow
+
+[09/17/2021 06:09:22] [WARNING] [NConvert] the installation instructions on the GitHub Repository or the forum thread.
+
+[09/17/2021 06:09:22] [INFO] [InputHandler] Disabled texture compression/downsizing.
+
+[09/17/2021 06:09:24] [INFO] Job added!
+
+[09/17/2021 06:09:59] [INFO] rpf2fivem
+
+[09/17/2021 06:09:59] [INFO] ---------------
+
+[09/17/2021 06:09:59] [INFO] Developed by Avenzey#6184 (thanks to https://github.com/vscorpio for developing the original version!)
+
+[09/17/2021 06:09:59] [INFO] GitHub repository: https://github.com/Avenze/rpf2fivem-repository
+
+[09/17/2021 06:09:59] [INFO] Discord support: https://discord.gg/C4e4q6g
+
+[09/17/2021 06:09:59] [INFO] ---------------
+
+[09/17/2021 06:09:59] [INFO] GTA5-Mods links must look like this: 
+
+[09/17/2021 06:09:59] [INFO] https://files.gta5-mods.com/uploads/XXXCARNAMEXXXX/XXXCARNAMEXXXX.zip
+
+[09/17/2021 06:09:59] [INFO] Links must be DIRECT link else they won't download!
+
+[09/17/2021 06:10:09] [INFO] Job added!
+
+[09/17/2021 06:10:25] [INFO] Job added!
+
+[09/17/2021 06:10:42] [INFO] Job added!
+
+[09/17/2021 06:11:10] [INFO] Job added!
+
+[09/17/2021 06:11:12] [INFO] [Worker] Started resConvert async task...
+
+[09/17/2021 06:11:12] [INFO] [Worker] Cleaning cache...
+
+[09/17/2021 06:11:12] [INFO] [Worker] Setting up environment...
+
+[09/17/2021 06:11:12] [INFO] [Worker] Writing config helpers...
+
+[09/17/2021 06:11:12] [INFO] [Worker] Created 1987172654 FiveM resource directory...
+
+[09/17/2021 06:11:13] [INFO] [Worker] Writing resouce manifest...
+
+[09/17/2021 06:11:13] [INFO] [Worker] Checking link...OK
+
+[09/17/2021 06:11:13] [INFO] [AsyncDownload] Downloading archive...
+
+[09/17/2021 06:11:17] [INFO] [AsyncDownload] Successfully fetched archive!
+
+[09/17/2021 06:11:17] [INFO] [SharpCompress] Decompressing...
+
+[09/17/2021 06:11:22] [INFO] [SharpCompress] Unpack finished!
+
+[09/17/2021 06:11:22] [INFO] [Worker] Deleting 1987172654\cache\unpack\Volvo S60 Polestar 2015 v1.2 by bozdemirt\replace\asterope.yft ...
+
+[09/17/2021 06:11:22] [INFO] [Worker] Deleting 1987172654\cache\unpack\Volvo S60 Polestar 2015 v1.2 by bozdemirt\replace\asterope_hi.yft ...
+
+[09/17/2021 06:11:22] [INFO] [Worker] Deleting 1987172654\cache\unpack\Volvo S60 Polestar 2015 v1.2 by bozdemirt\replace\asterope.ytd ...
+
+[09/17/2021 06:11:22] [INFO] [Worker] Searching for dlc.rpf...
+
+[09/17/2021 06:11:22] [INFO] [CodeWalker] Unpacking cache\unpack\Volvo S60 Polestar 2015 v1.2 by bozdemirt\addon\dlc.rpf...
+
+[09/17/2021 06:11:26] [INFO] [NConvert] Sucessfully resized texture (Tyre_D) to 50%!
+
+[09/17/2021 06:11:28] [INFO] [NConvert] Sucessfully resized texture (vol_badge_t6_001_nrml) to 50%!
+
+[09/17/2021 06:11:29] [INFO] [NConvert] Sucessfully resized texture (lights_lod0_2) to 50%!
+
+[09/17/2021 06:11:30] [INFO] [NConvert] Sucessfully resized texture (vol_badge_t6_001_diff) to 50%!
+
+[09/17/2021 06:11:30] [INFO] [NConvert] Sucessfully resized texture (vol_badge_003_diff) to 50%!
+
+[09/17/2021 06:11:30] [INFO] [NConvert] Sucessfully resized texture (polestar_001_diff1) to 50%!
+
+[09/17/2021 06:11:31] [INFO] [NConvert] Sucessfully resized texture (Tyre_S) to 50%!
+
+[09/17/2021 06:11:32] [INFO] [NConvert] Sucessfully resized texture (digitalGaugeCapture) to 50%!
+
+[09/17/2021 06:11:32] [INFO] [NConvert] Sucessfully resized texture (script_rt_dials_race) to 50%!
+
+[09/17/2021 06:11:33] [INFO] [NConvert] Sucessfully resized texture (Tyre_NM) to 50%!
+
+[09/17/2021 06:11:34] [INFO] [NConvert] Sucessfully resized texture (digitalGaugeCapture2) to 50%!
+
+[09/17/2021 06:11:34] [INFO] [NConvert] Sucessfully resized texture (int_symbols_001_diff) to 50%!
+
+[09/17/2021 06:11:35] [INFO] [NConvert] Sucessfully resized texture (vol_badge_003_nrml) to 50%!
+
+[09/17/2021 06:11:35] [INFO] [NConvert] Sucessfully resized texture (vol_badge_t6_001_gloss) to 50%!
+
+[09/17/2021 06:11:36] [INFO] [CodeWalker] Resized texture dictionary (ytd) s60pole.ytd.
+
+[09/17/2021 06:11:36] [INFO] [Worker] Removing unnessecary items from cache...
+
+[09/17/2021 06:11:41] [INFO] [Worker] Inflating 1987172654\cache\rpfunpack\carcols.meta
+
+[09/17/2021 06:11:41] [INFO] [Worker] Inflating 1987172654\cache\rpfunpack\carvariations.meta
+
+[09/17/2021 06:11:41] [INFO] [Worker] Inflating 1987172654\cache\rpfunpack\dlctext.meta
+
+[09/17/2021 06:11:41] [INFO] [Worker] Inflating 1987172654\cache\rpfunpack\handling.meta
+
+[09/17/2021 06:11:41] [INFO] [Worker] Inflating 1987172654\cache\rpfunpack\vehicles.meta
+
+[09/17/2021 06:11:41] [INFO] [Worker] Inflating 1987172654\cache\rpfunpack\s60pole.yft
+
+[09/17/2021 06:11:41] [INFO] [Worker] Fixing cache\rpfunpack\s60pole.yft...
+
+[09/17/2021 06:11:42] [INFO] [Worker] Inflating 1987172654\cache\rpfunpack\s60pole_hi.yft
+
+[09/17/2021 06:11:42] [INFO] [Worker] Fixing cache\rpfunpack\s60pole_hi.yft...
+
+[09/17/2021 06:11:42] [INFO] [Worker] Inflating 1987172654\cache\rpfunpack\s60pole.ytd
+
+[09/17/2021 06:11:42] [INFO] [Worker] Fixing cache\rpfunpack\s60pole.ytd...
+
+[09/17/2021 06:11:42] [INFO] [Worker] Moving resource into resources folder...
+
+[09/17/2021 06:11:42] [INFO] [Worker] Cleaning up...
+
+[09/17/2021 06:11:42] [INFO] [Worker] Finished converting vehicle 1987172654
+
+[09/17/2021 06:11:42] [INFO] [Worker] Started resConvert async task...
+
+[09/17/2021 06:11:42] [INFO] [Worker] Cleaning cache...
+
+[09/17/2021 06:11:42] [INFO] [Worker] Setting up environment...
+
+[09/17/2021 06:11:42] [INFO] [Worker] Writing config helpers...
+
+[09/17/2021 06:11:42] [INFO] [Worker] Created 983956958 FiveM resource directory...
+
+[09/17/2021 06:11:42] [INFO] [Worker] Writing resouce manifest...
+
+[09/17/2021 06:11:42] [INFO] [Worker] Checking link...OK
+
+[09/17/2021 06:11:42] [INFO] [AsyncDownload] Downloading archive...
+
+[09/17/2021 06:11:52] [INFO] [AsyncDownload] Successfully fetched archive!
+
+[09/17/2021 06:11:52] [INFO] [SharpCompress] Decompressing...
+
+[09/17/2021 06:11:56] [INFO] [SharpCompress] Unpack finished!
+
+[09/17/2021 06:11:56] [INFO] [Worker] Deleting 983956958\cache\unpack\1983 Volvo 242 Turbo ~ Zievs\Replace\warrener.yft ...
+
+[09/17/2021 06:11:56] [INFO] [Worker] Deleting 983956958\cache\unpack\1983 Volvo 242 Turbo ~ Zievs\Replace\warrener_hi.yft ...
+
+[09/17/2021 06:11:56] [INFO] [Worker] Deleting 983956958\cache\unpack\1983 Volvo 242 Turbo ~ Zievs\Replace\warrener.ytd ...
+
+[09/17/2021 06:11:56] [INFO] [Worker] Searching for dlc.rpf...
+
+[09/17/2021 06:11:56] [INFO] [CodeWalker] Unpacking cache\unpack\1983 Volvo 242 Turbo ~ Zievs\Add-on\v242\dlc.rpf...
+
+[09/17/2021 06:11:59] [INFO] [NConvert] Sucessfully resized texture (nodamage_lod0wAlpha) to 50%!
+
+[09/17/2021 06:12:02] [INFO] [NConvert] Sucessfully resized texture (bride_back) to 50%!
+
+[09/17/2021 06:12:03] [INFO] [NConvert] Sucessfully resized texture (bride_alcantara) to 50%!
+
+[09/17/2021 06:12:05] [INFO] [NConvert] Sucessfully resized texture (plastic_tetxure_spec) to 50%!
+
+[09/17/2021 06:12:05] [INFO] [NConvert] Sucessfully resized texture (bride_rail_decal) to 50%!
+
+[09/17/2021 06:12:07] [INFO] [NConvert] Sucessfully resized texture (plastic_texture_nrm) to 50%!
+
+[09/17/2021 06:12:11] [INFO] [NConvert] Sucessfully resized texture (leather_nrm) to 50%!
+
+[09/17/2021 06:12:11] [INFO] [NConvert] Sucessfully resized texture (bride_decals) to 50%!
+
+[09/17/2021 06:12:13] [INFO] [NConvert] Sucessfully resized texture (lights_lod0) to 50%!
+
+[09/17/2021 06:12:14] [INFO] [NConvert] Sucessfully resized texture (nodamage_lod0NoAlpha) to 50%!
+
+[09/17/2021 06:12:18] [INFO] [NConvert] Sucessfully resized texture (leather_spec) to 50%!
+
+[09/17/2021 06:12:20] [INFO] [NConvert] Sucessfully resized texture (bride_alcantara_spec) to 50%!
+
+[09/17/2021 06:12:24] [INFO] [NConvert] Sucessfully resized texture (bride_alcantara_nrm) to 50%!
+
+[09/17/2021 06:12:27] [INFO] [NConvert] Sucessfully resized texture (bride_pattern) to 50%!
+
+[09/17/2021 06:12:29] [INFO] [NConvert] Sucessfully resized texture (lights_lod0NoAlpha) to 50%!
+
+[09/17/2021 06:12:29] [INFO] [NConvert] Sucessfully resized texture (242turbo_sign_1) to 50%!
+
+[09/17/2021 06:12:32] [INFO] [NConvert] Sucessfully resized texture (bride_pattenr_nrm) to 50%!
+
+[09/17/2021 06:12:33] [INFO] [CodeWalker] Resized texture dictionary (ytd) v242.ytd.
+
+[09/17/2021 06:12:34] [INFO] [Worker] Removing unnessecary items from cache...
+
+[09/17/2021 06:12:39] [INFO] [Worker] Inflating 983956958\cache\rpfunpack\carcols.meta
+
+[09/17/2021 06:12:39] [INFO] [Worker] Inflating 983956958\cache\rpfunpack\carvariations.meta
+
+[09/17/2021 06:12:39] [INFO] [Worker] Inflating 983956958\cache\rpfunpack\handling.meta
+
+[09/17/2021 06:12:39] [INFO] [Worker] Inflating 983956958\cache\rpfunpack\vehicles.meta
+
+[09/17/2021 06:12:39] [INFO] [Worker] Inflating 983956958\cache\rpfunpack\v242.yft
+
+[09/17/2021 06:12:39] [INFO] [Worker] Fixing cache\rpfunpack\v242.yft...
+
+[09/17/2021 06:12:39] [INFO] [Worker] Inflating 983956958\cache\rpfunpack\v242_bumf_1.yft
+
+[09/17/2021 06:12:39] [INFO] [Worker] Fixing cache\rpfunpack\v242_bumf_1.yft...
+
+[09/17/2021 06:12:39] [INFO] [Worker] Inflating 983956958\cache\rpfunpack\v242_cage_1.yft
+
+[09/17/2021 06:12:39] [INFO] [Worker] Fixing cache\rpfunpack\v242_cage_1.yft...
+
+[09/17/2021 06:12:39] [INFO] [Worker] Inflating 983956958\cache\rpfunpack\v242_cage_2.yft
+
+[09/17/2021 06:12:39] [INFO] [Worker] Fixing cache\rpfunpack\v242_cage_2.yft...
+
+[09/17/2021 06:12:39] [INFO] [Worker] Inflating 983956958\cache\rpfunpack\v242_hi.yft
+
+[09/17/2021 06:12:39] [INFO] [Worker] Fixing cache\rpfunpack\v242_hi.yft...
+
+[09/17/2021 06:12:39] [INFO] [Worker] Inflating 983956958\cache\rpfunpack\v242_seats_1.yft
+
+[09/17/2021 06:12:39] [INFO] [Worker] Fixing cache\rpfunpack\v242_seats_1.yft...
+
+[09/17/2021 06:12:39] [INFO] [Worker] Inflating 983956958\cache\rpfunpack\v242_wing_1.yft
+
+[09/17/2021 06:12:39] [INFO] [Worker] Fixing cache\rpfunpack\v242_wing_1.yft...
+
+[09/17/2021 06:12:39] [INFO] [Worker] Inflating 983956958\cache\rpfunpack\v242.ytd
+
+[09/17/2021 06:12:39] [INFO] [Worker] Fixing cache\rpfunpack\v242.ytd...
+
+[09/17/2021 06:12:39] [INFO] [Worker] Moving resource into resources folder...
+
+[09/17/2021 06:12:39] [INFO] [Worker] Cleaning up...
+
+[09/17/2021 06:12:39] [INFO] [Worker] Finished converting vehicle 983956958
+
+[09/17/2021 06:12:39] [INFO] [Worker] Started resConvert async task...
+
+[09/17/2021 06:12:39] [INFO] [Worker] Cleaning cache...
+
+[09/17/2021 06:12:39] [INFO] [Worker] Setting up environment...
+
+[09/17/2021 06:12:39] [INFO] [Worker] Writing config helpers...
+
+[09/17/2021 06:12:39] [INFO] [Worker] Created 1847188020 FiveM resource directory...
+
+[09/17/2021 06:12:40] [INFO] [Worker] Writing resouce manifest...
+
+[09/17/2021 06:12:40] [INFO] [Worker] Checking link...OK
+
+[09/17/2021 06:12:40] [INFO] [AsyncDownload] Downloading archive...
+
+[09/17/2021 06:12:40] [INFO] [AsyncDownload] Successfully fetched archive!
+
+[09/17/2021 06:12:40] [INFO] [SharpCompress] Decompressing...
+
+[09/17/2021 06:12:43] [INFO] [SharpCompress] Unpack finished!
+
+[09/17/2021 06:12:43] [INFO] [Worker] Deleting 1847188020\cache\unpack\fbi.ytd ...
+
+[09/17/2021 06:12:43] [INFO] [Worker] Searching for dlc.rpf...
+
+[09/17/2021 06:12:43] [WARNING] [CodeWalker] Vehicle (1847188020) is incompatible, no .rpf file was found.
+
+[09/17/2021 06:12:43] [INFO] [Worker] Removing unnessecary items from cache...
+
+[09/17/2021 06:12:48] [INFO] [Worker] Moving resource into resources folder...
+
+[09/17/2021 06:12:48] [INFO] [Worker] Cleaning up...
+
+[09/17/2021 06:12:48] [INFO] [Worker] Finished converting vehicle 1847188020
+
+[09/17/2021 06:12:48] [INFO] [Worker] Started resConvert async task...
+
+[09/17/2021 06:12:48] [INFO] [Worker] Cleaning cache...
+
+[09/17/2021 06:12:48] [INFO] [Worker] Setting up environment...
+
+[09/17/2021 06:12:48] [INFO] [Worker] Writing config helpers...
+
+[09/17/2021 06:12:48] [INFO] [Worker] Created 454786878 FiveM resource directory...
+
+[09/17/2021 06:12:49] [INFO] [Worker] Writing resouce manifest...
+
+[09/17/2021 06:12:49] [INFO] [Worker] Checking link...OK
+
+[09/17/2021 06:12:49] [INFO] [AsyncDownload] Downloading archive...
+
+[09/17/2021 06:12:51] [INFO] [AsyncDownload] Successfully fetched archive!
+
+[09/17/2021 06:12:51] [INFO] [SharpCompress] Decompressing...
+
+[09/17/2021 06:12:54] [INFO] [SharpCompress] Unpack finished!
+
+[09/17/2021 06:12:54] [INFO] [Worker] Deleting 454786878\cache\unpack\Volvo 740 a-traktor\Model\bison.yft ...
+
+[09/17/2021 06:12:54] [INFO] [Worker] Deleting 454786878\cache\unpack\Volvo 740 a-traktor\Model\bison_hi.yft ...
+
+[09/17/2021 06:12:54] [INFO] [Worker] Deleting 454786878\cache\unpack\Volvo 740 a-traktor\Model\bison.ytd ...
+
+[09/17/2021 06:12:54] [INFO] [Worker] Deleting 454786878\cache\unpack\Volvo 740 a-traktor\Handling\handling.meta ...
+
+[09/17/2021 06:12:54] [INFO] [Worker] Searching for dlc.rpf...
+
+[09/17/2021 06:12:54] [WARNING] [CodeWalker] Vehicle (454786878) is incompatible, no .rpf file was found.
+
+[09/17/2021 06:12:54] [INFO] [Worker] Removing unnessecary items from cache...
+
+[09/17/2021 06:12:59] [INFO] [Worker] Moving resource into resources folder...
+
+[09/17/2021 06:12:59] [INFO] [Worker] Cleaning up...
+
+[09/17/2021 06:12:59] [INFO] [Worker] Finished converting vehicle 454786878
+

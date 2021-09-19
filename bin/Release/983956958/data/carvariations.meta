@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CVehicleModelInfoVariation>
+  <variationData>
+
+    <Item>
+      <modelName>v242</modelName>
+      <colors>
+        <Item>
+          <indices content="char_array">
+            74 
+            63 
+            0 
+            156 
+          </indices>
+          <liveries>
+            <Item value="false" />
+          </liveries>
+        </Item>
+        <Item>
+          <indices content="char_array">
+            58 
+            2 
+            0 
+            156
+          </indices>
+          <liveries>
+            <Item value="false" />
+          </liveries>
+        </Item>
+        <Item>
+          <indices content="char_array">
+            38 
+            6 
+            0 
+            156 
+          </indices>
+          <liveries>
+            <Item value="false" />
+          </liveries>
+        </Item>
+        <Item>
+          <indices content="char_array">
+            126 
+            130 
+            0 
+            156 
+          </indices>
+          <liveries>
+            <Item value="false" />
+          </liveries>
+        </Item>
+        <Item>
+          <indices content="char_array">
+            97 
+            94 
+            0 
+            156 
+          </indices>
+          <liveries>
+            <Item value="false" />
+          </liveries>
+        </Item>
+      </colors>
+      <kits>
+        <Item>4752_v242_modkit</Item>
+      </kits>
+      <windowsWithExposedEdges />
+      <plateProbabilities>
+        <Probabilities>
+          <Item>
+            <Name>Yellow Plate</Name>
+            <Value value="100" />
+	  </Item>
+        </Probabilities>
+      </plateProbabilities>
+      <lightSettings value="2" />
+      <sirenSettings value="0" />
+    </Item>
+
+  </variationData>
+</CVehicleModelInfoVariation>

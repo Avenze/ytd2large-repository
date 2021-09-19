@@ -1,0 +1,97 @@
+                             NConvert v7.41
+                              XnView v2.49
+
+                   Copyright (c) 1991-20209 Pierre-E Gougelet
+                           All Rights Reserved.
+
+
+
+XnView v2.49.3 (LIBFORMAT v7.41) 15/05/2020:
+
+     * Fortis Mag fix
+     * NConvert: -wmsize watermark percent size - https://newsgroup.xnview.com/viewtopic.php?f=57&t=38754
+     * NConvert: canvas size in inches/cm/mm - https://newsgroup.xnview.com/viewtopic.php?f=57&t=39361
+     * NConvert: replace_color - https://newsgroup.xnview.com/viewtopic.php?f=57&t=39769
+     * NConvert: -temperature added
+
+XnView v2.49 (LIBFORMAT v7.39) 02/25/2019:
+
+     * NConvert: -wmsize watermark percent size - https://newsgroup.xnview.com/viewtopic.php?f=57&t=38754
+     * NConvert: canvas size in inches/cm/mm - https://newsgroup.xnview.com/viewtopic.php?f=57&t=39361
+     * NConvert: replace_color - https://newsgroup.xnview.com/viewtopic.php?f=57&t=39769
+
+
+XnView v2.49 (LIBFORMAT v7.32) 01/09/2019:
+
+     * NConvert: greater_than/less_than condition - https://newsgroup.xnview.com/viewtopic.php?f=57&t=39147
+     * NConvert: -unsharp
+     * NConvert: -exposure - https://newsgroup.xnview.com/viewtopic.php?f=57&t=39136
+     * NConvert: -colorize h l s
+     * NConvert: Remove EXIF orientation -exif_rotation - https://newsgroup.xnview.com/viewtopic.php?f=57&t=38648
+     * CVE-2019-12151
+
+
+XnView v2.48 (LIBFORMAT v7.25) 02/02/2019:
+
+     * WebP 32bits
+
+
+XnView v2.47 (LIBFORMAT v7.25) 15/01/2019:
+
+     * XCF 2.10
+     * ICNS with JPEG2000 icon
+     * NConvert: -no_auto_rotate - https://newsgroup.xnview.com/viewtopic.php?f=57&t=38239
+     * NConvert: -autocrop with position
+     * NConvert: add -lower to lower case output filename
+     * NConvert: Bug when output filename contains a numeric enumerator - https://newsgroup.xnview.com/viewtopic.php?f=57&t=38014
+
+
+XnView v2.46 (LIBFORMAT v7.20) 05/09/2018:
+
+     * JPEG2000 YCC - https://newsgroup.xnview.com/viewtopic.php?f=35&t=37806
+     * Bad loading for ARW - https://newsgroup.xnview.com/viewtopic.php?f=36&t=37683
+     * TIFF with JPEG compression - https://newsgroup.xnview.com/viewtopic.php?f=35&t=37585
+     * PDF version 1.4 output
+     * RLE & ICO vulnerabilities Cody Sixteen from STM Solutions 
+     * NConvert: stdout problem on windows - https://newsgroup.xnview.com/viewtopic.php?f=57&t=37810
+
+
+XnView v2.45 (LIBFORMAT v7.20) 31/05/2018:
+
+     * Support HPI with transparency
+
+
+XnView v2.44 (LIBFORMAT v7.15) 27/02/2018:
+
+
+XnView v2.43 (LIBFORMAT v7.12) 18/10/2017:
+
+     * Better HEIF support - http://www.xnview.com/download/plugins/heif_x32.zip
+
+
+XnView v2.42 (LIBFORMAT v7.11) 22/09/2017:
+
+     * HEIF support - Extract http://www.xnview.com/download/plugins/heif_x32.zip in Plugins folder
+
+
+XnView v2.41 (LIBFORMAT v7.10) 05/09/2017:
+
+     * NConvert: -keepdocsize fixed
+     * NConvert: -shadow - http://newsgroup.xnview.com/viewtopic.php?f=57&t=36163
+     * NConvert: -align - http://newsgroup.xnview.com/viewtopic.php?f=57&t=36164
+
+
+XnView v2.40 (LIBFORMAT v7.00) 18/04/2017:
+
+     * LIBPNG 1.6.29
+     * SQLite 3.18.0
+     * ZLIB 1.2.11
+     * LCMS 2.8
+     * BMP 2+10+10+10 - http://newsgroup.xnview.com/viewtopic.php?f=36&t=32577
+     * OpenEXR updated - http://newsgroup.xnview.com/viewtopic.php?f=36&t=33039
+     * PAM format - http://newsgroup.xnview.com/viewtopic.php?f=36&t=35132
+     * WebP plugin updated
+     * OpenJPEG2000 updated
+     * X3F with only embedded JPEG
+     * NConvert: text with -text_rotation - http://newsgroup.xnview.com/viewtopic.php?f=57&t=35441
+     * NConvert: -text_border added
