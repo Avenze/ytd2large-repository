@@ -27,7 +27,7 @@
 
 //shamelessly stolen
 
-using rpf2fivem.Properties;
+using ytd2large.Properties;
 using System;
 using System.Collections.Generic;
 using System.IO;

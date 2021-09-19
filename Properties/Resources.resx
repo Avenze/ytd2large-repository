@@ -117,38 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="fxmanifest_false" xml:space="preserve">
-    <value>fx_version 'cerulean'
-game 'gta5'
- 
-files {
-    'data/*.meta'
-}
- 
-data_file 'HANDLING_FILE' 'data/handling.meta'
-data_file 'VEHICLE_METADATA_FILE' 'data/vehicles.meta'
-data_file 'VEHICLE_METADATA_FILE' 'data/vehiclelayouts.meta'
-data_file 'CARCOLS_FILE' 'data/carcols.meta'
-data_file 'VEHICLE_VARIATION_FILE' 'data/carvariations.meta'
--- data_file 'VEHICLE_LAYOUTS_FILE' 'data/dlctext.meta'
--- data_file 'VEHICLE_METADATA_FILE' 'data/contentunlocks.meta'</value>
-  </data>
-  <data name="fxmanifest_true" xml:space="preserve">
-    <value>fx_version 'cerulean'
-game 'gta5'
- 
-files {
-    'data/**/*.meta'
-}
- 
-data_file 'HANDLING_FILE' 'data/**/handling.meta'
-data_file 'VEHICLE_LAYOUTS_FILE' 'data/**/vehiclelayouts.meta'
-data_file 'VEHICLE_METADATA_FILE' 'data/**/vehicles.meta'
-data_file 'CARCOLS_FILE' 'data/**/carcols.meta'
-data_file 'VEHICLE_VARIATION_FILE' 'data/**/carvariations.meta'
--- data_file 'DLCTEXT_FILE' 'data/**/dlctext.meta'
--- data_file 'CARCONTENTUNLOCKS_FILE' 'data/**/carcontentunlocks.meta'</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="magic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\magic.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

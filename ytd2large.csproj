@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1E4A069E-3FFA-4C9B-A5B4-635385084EE4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>rpf2fivem</RootNamespace>
-    <AssemblyName>rpf2fivem</AssemblyName>
+    <RootNamespace>ytd2large</RootNamespace>
+    <AssemblyName>ytd2large</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -182,6 +182,7 @@
     <Compile Include="GameFiles\Utils\GTACrypto.cs" />
     <Compile Include="GameFiles\Utils\GTAKeys.cs" />
     <Compile Include="GameFiles\Utils\Jenk.cs" />
+    <Compile Include="HashHelpers.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>

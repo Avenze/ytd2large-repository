@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace rpf2fivem.Properties {
+namespace ytd2large.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace rpf2fivem.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("rpf2fivem.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ytd2large.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,50 +57,6 @@ namespace rpf2fivem.Properties {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to fx_version &apos;cerulean&apos;
-        ///game &apos;gta5&apos;
-        /// 
-        ///files {
-        ///    &apos;data/*.meta&apos;
-        ///}
-        /// 
-        ///data_file &apos;HANDLING_FILE&apos; &apos;data/handling.meta&apos;
-        ///data_file &apos;VEHICLE_METADATA_FILE&apos; &apos;data/vehicles.meta&apos;
-        ///data_file &apos;VEHICLE_METADATA_FILE&apos; &apos;data/vehiclelayouts.meta&apos;
-        ///data_file &apos;CARCOLS_FILE&apos; &apos;data/carcols.meta&apos;
-        ///data_file &apos;VEHICLE_VARIATION_FILE&apos; &apos;data/carvariations.meta&apos;
-        ///-- data_file &apos;VEHICLE_LAYOUTS_FILE&apos; &apos;data/dlctext.meta&apos;
-        ///-- data_file &apos;VEHICLE_METADATA_FILE&apos; &apos;data/contentunlocks.meta&apos;.
-        /// </summary>
-        internal static string fxmanifest_false {
-            get {
-                return ResourceManager.GetString("fxmanifest_false", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to fx_version &apos;cerulean&apos;
-        ///game &apos;gta5&apos;
-        /// 
-        ///files {
-        ///    &apos;data/**/*.meta&apos;
-        ///}
-        /// 
-        ///data_file &apos;HANDLING_FILE&apos; &apos;data/**/handling.meta&apos;
-        ///data_file &apos;VEHICLE_LAYOUTS_FILE&apos; &apos;data/**/vehiclelayouts.meta&apos;
-        ///data_file &apos;VEHICLE_METADATA_FILE&apos; &apos;data/**/vehicles.meta&apos;
-        ///data_file &apos;CARCOLS_FILE&apos; &apos;data/**/carcols.meta&apos;
-        ///data_file &apos;VEHICLE_VARIATION_FILE&apos; &apos;data/**/carvariations.meta&apos;
-        ///-- data_file &apos;DLCTEXT_FILE&apos; &apos;data/**/dlctext.meta&apos;
-        ///-- data_file &apos;CARCONTENTUNLOCKS_FILE&apos; &apos;data/**/carcontentunlocks.meta&apos;.
-        /// </summary>
-        internal static string fxmanifest_true {
-            get {
-                return ResourceManager.GetString("fxmanifest_true", resourceCulture);
             }
         }
         
