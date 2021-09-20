@@ -980,11 +980,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projekt\\C#\\rpf2fivem\\rpf2fivem.csproj",
-      "projectName": "rpf2fivem",
-      "projectPath": "D:\\Projekt\\C#\\rpf2fivem\\rpf2fivem.csproj",
+      "projectUniqueName": "D:\\Projekt\\C#\\ytd2large\\ytd2large.csproj",
+      "projectName": "ytd2large",
+      "projectPath": "D:\\Projekt\\C#\\ytd2large\\ytd2large.csproj",
       "packagesPath": "C:\\Users\\conta\\.nuget\\packages\\",
-      "outputPath": "D:\\Projekt\\C#\\rpf2fivem\\obj\\",
+      "outputPath": "D:\\Projekt\\C#\\ytd2large\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [

@@ -79,7 +79,6 @@
             // 
             // btnSetFolder
             // 
-            this.btnSetFolder.Enabled = false;
             this.btnSetFolder.Location = new System.Drawing.Point(9, 49);
             this.btnSetFolder.Name = "btnSetFolder";
             this.btnSetFolder.Size = new System.Drawing.Size(99, 23);

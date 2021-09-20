@@ -57,7 +57,7 @@ namespace ytd2large
             LogAppend("Discord support: https://discord.gg/C4e4q6g");
             LogAppend("---------------");
 
-            if (!Directory.Exists("./library/NConvert"))
+            if (!Directory.Exists("./library/nconvert"))
             {
                 // add warning if the user hasn't installed NConvert properly
                 WarningAppend("[NConvert] It seems like you haven't installed NConvert, please follow");
@@ -251,7 +251,7 @@ namespace ytd2large
                                                             File.WriteAllBytes("./NConvert/" + texture.Value.Name + ".dds", dds);
 
                                                             Process p = new Process();
-                                                            p.StartInfo.FileName = @"./NConvert/nconvert.exe";
+                                                            p.StartInfo.FileName = @"./library/nconvert/nconvert.exe";
                                                             p.StartInfo.Arguments = $"-out dds -resize 50% 50% -overwrite ./NConvert/{texture.Value.Name}.dds";
                                                             p.StartInfo.UseShellExecute = false;
                                                             p.StartInfo.RedirectStandardOutput = true;
@@ -329,6 +329,7 @@ namespace ytd2large
         // Conversion Functions
         public async Task startConversion(string resname, string link, bool combine, bool local)
         {
+
             // Archive .ytd files into .rpf archive for easier structure and handling.
             LogAppend("[GTAUtil] Archiving .ytd files into .rpf archive...");
             try
@@ -417,7 +418,6 @@ namespace ytd2large
 
         async Task makeGtaUtilFolder(string gtaUtilTempFolder, string gtafolder)
         {
-
             string xmlTemplate = $@"<?xml version=""1.0"" encoding=""utf-8""?>
                                     <configuration>
                                         <configSections>
