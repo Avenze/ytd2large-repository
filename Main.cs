@@ -153,7 +153,7 @@ namespace ytd2large
 
         // Loop
 
-        private async void StartLoop()
+        private async void StartLoop() // Hacky method, but whatever.
         {
             while (true)
             {
@@ -248,11 +248,11 @@ namespace ytd2large
                                                         if (texture.Value.Width > 512) // Only resize if it is greater than 1440p
                                                         {
                                                             byte[] dds = DDSIO.GetDDSFile(texture.Value);
-                                                            File.WriteAllBytes("./NConvert/" + texture.Value.Name + ".dds", dds);
+                                                            File.WriteAllBytes("./cache/images/" + texture.Value.Name + ".dds", dds);
 
                                                             Process p = new Process();
                                                             p.StartInfo.FileName = @"./library/nconvert/nconvert.exe";
-                                                            p.StartInfo.Arguments = $"-out dds -resize 50% 50% -overwrite ./NConvert/{texture.Value.Name}.dds";
+                                                            p.StartInfo.Arguments = $"-out dds -resize 50% 50% -overwrite ./cache/images/{texture.Value.Name}.dds";
                                                             p.StartInfo.UseShellExecute = false;
                                                             p.StartInfo.RedirectStandardOutput = true;
                                                             p.Start();
@@ -260,7 +260,7 @@ namespace ytd2large
                                                             p.WaitForExit();
 
                                                             LogAppend("[NConvert] Sucessfully resized texture (" + texture.Value.Name + ") to 50%!");
-                                                            File.Move("./NConvert/" + texture.Value.Name + ".dds", directoryOffset + texture.Value.Name + ".dds");
+                                                            File.Move("./cache/images/" + texture.Value.Name + ".dds", directoryOffset + texture.Value.Name + ".dds");
 
                                                             byte[] resizedData = File.ReadAllBytes(directoryOffset + texture.Value.Name + ".dds");
                                                             Texture resizedTex = DDSIO.GetTexture(resizedData);
@@ -278,7 +278,7 @@ namespace ytd2large
 
                                                     if (!somethingResized)
                                                     {
-                                                        LogAppend("[CodeWalker] No textures were resized, skipping .ytd recreation.");
+                                                        LogAppend("[CodeWalker] It seems like the .ytd directory was empty. Corrupt?");
                                                         break;
                                                     }
 
@@ -329,12 +329,23 @@ namespace ytd2large
         // Conversion Functions
         public async Task startConversion(string resname, string link, bool combine, bool local)
         {
+            // Set up cache folder
+            LogAppend("[Worker] Setting up image cache folder.");
+            try
+            {
+                Directory.CreateDirectory(@".\cache\images\");
+            }
+            catch (Exception ex)
+            {
+                ErrorAppend("[Worker] Failed to create image cache folder. Stacktrace: " + ex);
+            }
 
             // Archive .ytd files into .rpf archive for easier structure and handling.
             LogAppend("[GTAUtil] Archiving .ytd files into .rpf archive...");
             try
             {
                 HideShellCmd(@"library\gtautil\GTAUtil.exe createarchive --input input\ --output \ --name dlc");
+                await Task.Delay(2500);
             }
             catch (Exception ex)
             {
