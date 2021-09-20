@@ -78,6 +78,11 @@ namespace ytd2large
                 LogAppend("Creating ./output directory as it was missing.");
                 Directory.CreateDirectory("output");
             }
+            if (!Directory.Exists("./library"))
+            {
+                LogAppend("Creating ./library directory as it was missing.");
+                Directory.CreateDirectory("library");
+            }
         }
 
         // Helper Functions
