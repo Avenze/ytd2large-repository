@@ -83,6 +83,8 @@ namespace ytd2large
                 LogAppend("Creating ./library directory as it was missing.");
                 Directory.CreateDirectory("library");
             }
+
+            StartLoop();
         }
 
         // Helper Functions
@@ -140,7 +142,7 @@ namespace ytd2large
             System.Diagnostics.Process.Start("CMD.exe", strCmdText);
         }
 
-        private void HideShellCmd(string cmd)
+        private async void HideShellCmd(string cmd)
         {
             System.Diagnostics.Process process = new System.Diagnostics.Process();
             System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
@@ -158,20 +160,20 @@ namespace ytd2large
             while (true)
             {
                 await Task.Delay(1000);
-                string[] ytdFiles = Directory.GetFiles("input", "*.ytd", SearchOption.AllDirectories);
+                string[] rpfFiles = Directory.GetFiles("input", "*.rpf", SearchOption.AllDirectories);
 
                 ytdList.Items.Clear();
 
-                foreach (var ytdFile in ytdFiles)
+                foreach (var rpfFile in rpfFiles)
                 {
-                    ytdList.Items.Add($"{ytdFile}");
+                    ytdList.Items.Add($"{rpfFile}");
                 }
             }
         }
 
         // Unpacking Functions
 
-        private void ExtractFilesInRPF(RpfFile rpf, string directoryOffset)
+        private async void ExtractFilesInRPF(RpfFile rpf, string directoryOffset)
         {
             using (BinaryReader br = new BinaryReader(File.OpenRead(rpf.GetPhysicalFilePath())))
             {
@@ -231,10 +233,9 @@ namespace ytd2large
 
                                             if (extension.Equals(".ytd"))
                                             {
-                                                if (true == true) // Too lazy to retab the code.
+                                                if (true) // Too lazy to retab the code.
                                                 {
                                                     RpfFileEntry rpfentry = entry as RpfFileEntry;
-
                                                     byte[] ytddata = rpfentry.File.ExtractFile(rpfentry);
 
                                                     YtdFile ytd = new YtdFile();
@@ -243,32 +244,46 @@ namespace ytd2large
                                                     Dictionary<uint, Texture> Dicts = new Dictionary<uint, Texture>();
 
                                                     bool somethingResized = false;
+
                                                     foreach (KeyValuePair<uint, Texture> texture in ytd.TextureDict.Dict)
                                                     {
-                                                        if (texture.Value.Width > 512) // Only resize if it is greater than 1440p
+                                                        if (texture.Value.Width > 256) // Only resize if it is greater than 1440p
                                                         {
                                                             byte[] dds = DDSIO.GetDDSFile(texture.Value);
-                                                            File.WriteAllBytes("./cache/images/" + texture.Value.Name + ".dds", dds);
+                                                            string message = Encoding.ASCII.GetString(dds);
 
-                                                            Process p = new Process();
-                                                            p.StartInfo.FileName = @"./library/nconvert/nconvert.exe";
-                                                            p.StartInfo.Arguments = $"-out dds -resize 50% 50% -overwrite ./cache/images/{texture.Value.Name}.dds";
-                                                            p.StartInfo.UseShellExecute = false;
-                                                            p.StartInfo.RedirectStandardOutput = true;
-                                                            p.Start();
+                                                            if (message == "skip")
+                                                            {
+                                                                LogAppend("[CodeWalker] Skipped resizing texture (" + texture.Value.Name + ") as it's slice pitch was invalid.");
+                                                                Dicts.Add(texture.Key, texture.Value);
+                                                            }
+                                                            else
+                                                            {
+                                                                File.WriteAllBytes("./cache/images/" + texture.Value.Name + ".dds", dds);
 
-                                                            p.WaitForExit();
+                                                                //HideShellCmd(@"./library/nconvert/nconvert.exe -out dds -resize 50% 50% -overwrite ./cache/images/" + texture.Value.Name + ".dds");
 
-                                                            LogAppend("[NConvert] Sucessfully resized texture (" + texture.Value.Name + ") to 50%!");
-                                                            File.Move("./cache/images/" + texture.Value.Name + ".dds", directoryOffset + texture.Value.Name + ".dds");
+                                                                Process p = new Process();
+                                                                p.StartInfo.FileName = @"library\nconvert\nconvert.exe";
+                                                                p.StartInfo.Arguments = @"-out dds -resize 50% 50% -overwrite cache\images\" + texture.Value.Name + ".dds";
+                                                                p.StartInfo.UseShellExecute = false;
+                                                                p.StartInfo.RedirectStandardOutput = true;
+                                                                p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                                                                p.Start();
 
-                                                            byte[] resizedData = File.ReadAllBytes(directoryOffset + texture.Value.Name + ".dds");
-                                                            Texture resizedTex = DDSIO.GetTexture(resizedData);
-                                                            resizedTex.Name = texture.Value.Name;
-                                                            Dicts.Add(texture.Key, resizedTex);
+                                                                p.WaitForExit();
 
-                                                            File.Delete(directoryOffset + texture.Value.Name + ".dds");
-                                                            somethingResized = true;
+                                                                LogAppend("[NConvert] Sucessfully resized texture (" + texture.Value.Name + ") to 50%!");
+                                                                File.Move("./cache/images/" + texture.Value.Name + ".dds", directoryOffset + texture.Value.Name + ".dds");
+
+                                                                byte[] resizedData = File.ReadAllBytes(directoryOffset + texture.Value.Name + ".dds");
+                                                                Texture resizedTex = DDSIO.GetTexture(resizedData);
+                                                                resizedTex.Name = texture.Value.Name;
+                                                                Dicts.Add(texture.Key, resizedTex);
+
+                                                                File.Delete(directoryOffset + texture.Value.Name + ".dds");
+                                                                somethingResized = true;
+                                                            }
                                                         }
                                                         else
                                                         {
@@ -295,8 +310,14 @@ namespace ytd2large
                                                     File.WriteAllBytes(directoryOffset + entry.NameLower, resizedYtdData);
 
                                                     LogAppend("[CodeWalker] Resized texture dictionary (ytd) " + entry.NameLower + ".");
+                                                    HideShellCmd(@"move cache\ytds\" + entry.NameLower + ".ytd output");
                                                     break;
                                                 }
+                                            }
+                                            else
+                                            {
+                                                File.Delete("./cache/ytds/" + entry.NameLower);
+                                                LogAppend("[CodeWalker] Deleted " + entry.NameLower + " from cache folder.");
                                             }
 
                                             File.WriteAllBytes(directoryOffset + entry.NameLower, data);
@@ -327,41 +348,52 @@ namespace ytd2large
         }
 
         // Conversion Functions
-        public async Task startConversion(string resname, string link, bool combine, bool local)
+        public async Task startConversion()
         {
             // Set up cache folder
-            LogAppend("[Worker] Setting up image cache folder.");
+            LogAppend("[Worker] Setting up cache folders."); 
+            try
+            {
+                Directory.CreateDirectory(@".\cache\ytds\");
+            }
+            catch (Exception ex)
+            {
+                ErrorAppend("[Worker] Failed to create YTD cache folder. Stacktrace: " + ex);
+            }
+
+            // Set up DDS image cache folder
+            LogAppend("[Worker] Setting up cache folders.");
             try
             {
                 Directory.CreateDirectory(@".\cache\images\");
             }
             catch (Exception ex)
             {
-                ErrorAppend("[Worker] Failed to create image cache folder. Stacktrace: " + ex);
-            }
-
-            // Archive .ytd files into .rpf archive for easier structure and handling.
-            LogAppend("[GTAUtil] Archiving .ytd files into .rpf archive...");
-            try
-            {
-                HideShellCmd(@"library\gtautil\GTAUtil.exe createarchive --input input\ --output \ --name dlc");
-                await Task.Delay(2500);
-            }
-            catch (Exception ex)
-            {
-                ErrorAppend("[GTAUtil] Failed to archive .ytd files into .rpf archive. Stacktrace: " + ex);
+                ErrorAppend("[Worker] Failed to create YTD cache folder. Stacktrace: " + ex);
             }
 
             // Use built in functions to unarchive the .rpf archive and use the NConvert feature persson#4395 built into it. Hacky method but whatever, PR if you improve it.
             LogAppend("[Worker] Unarchiving .rpf and resizing images using NConvert.");
             try
             {
-                RpfFile rpf = new RpfFile(@"\dlc.rpf", @"\dlc.rpf");
-                LogAppend("[CodeWalker] Unpacking dlc.rpf...");
+                string[] rpfFiles = Directory.GetFiles("input", "*.rpf", SearchOption.TopDirectoryOnly); // I apparently can't pass a location string
 
-                if (rpf.ScanStructure(null, null))
+                foreach (var item in rpfFiles) // is there any difference between doing it using the Directory.GetFiles function and passing a location string like @".\cache\dlc.rpf?
                 {
-                    ExtractFilesInRPF(rpf, @".\cache\rpfunpack\"); 
+                    RpfFile rpf = new RpfFile(item, item);
+                    LogAppend("[CodeWalker] Unpacking dlc.rpf...");
+
+                    if (rpf.ScanStructure(null, null))
+                    {
+                        ExtractFilesInRPF(rpf, @".\cache\ytds\");
+                    }
+
+                    await Task.Delay(1500);
+                }
+
+                if (rpfFiles.Length == 0)
+                {
+                    WarningAppend("[CodeWalker] Seems like GTAUtil failed to generate an dlc.rpf file, stopping the conversion process.");
                 }
             }
             catch (Exception ex)
@@ -370,121 +402,31 @@ namespace ytd2large
             }
 
             // Moving resized .ytd files from /cache/rpfunpack to /output.
-            string[] ytdFiles = Directory.GetFiles("cache", "*.ytd", SearchOption.AllDirectories);
+            string[] ytdFiles = Directory.GetFiles("cache/ytds/", "*.ytd", SearchOption.AllDirectories);
 
             foreach (var ytdFile in ytdFiles)
             {
                 LogAppend("[CodeWalker] Moving " + ytdFile + " to /output.");
+                File.Move(ytdFile, @"./output/");
             }
 
             // Clean up like you just murdured someone.
             Directory.Delete("cache", true); 
-            Directory.Delete("input", true);
-            File.Delete("dlc.rpf"); // Will cause issues next time the program is used unless we delete it.
+            //Directory.Delete("input", true);
+            //File.Delete(@"cache\dlc.rpf"); // Will cause issues next time the program is used unless we delete it.
 
         }
 
         // Events
-
-        private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             timer1.Stop();
         }
 
-        private async void button2_Click_1(object sender, EventArgs e)
+        private void btnStart_Click(object sender, EventArgs e)
         {
-           
-        }
-
-        private async void btnStart_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        //
-        // gta folder stuffs
-        //
-
-        private bool checkGtaFolder()
-        {
-            if (folderPath.Text.Contains(@"\Grand Theft Auto V") || folderPath.Text.Contains(@"\GTAV") && !folderPath.Text.Contains(@"GTA5.exe"))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        async Task makeGtaUtilFolder(string gtaUtilTempFolder, string gtafolder)
-        {
-            string xmlTemplate = $@"<?xml version=""1.0"" encoding=""utf-8""?>
-                                    <configuration>
-                                        <configSections>
-                                            <sectionGroup name=""userSettings"" type=""System.Configuration.UserSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"" >
-                                                <section name=""GTAUtil.Settings"" type=""System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"" allowExeDefinition=""MachineToLocalUser"" requirePermission=""false"" />
-                                            </sectionGroup>
-                                        </configSections>
-                                        <userSettings>
-                                            <GTAUtil.Settings>
-                                                <setting name=""GTAFolder"" serializeAs=""String"">
-                                                    <value>{gtafolder}</value>
-                                                </setting>
-                                            </GTAUtil.Settings>
-                                        </userSettings>
-                                    </configuration>";
-
-
-            try
-            {
-                Directory.CreateDirectory(ytd2large.HashHelpers.Helpers.GetLocalAppDataUserConfigPathNoUserConfigFolder(Path.Combine(Directory.GetCurrentDirectory(), @"library\gtautil\GTAUtil.exe")));
-                await Task.Delay(1000);
-                File.WriteAllText(gtaUtilTempFolder, xmlTemplate, Encoding.Default);
-            }
-            catch (Exception ex)
-            {
-                ErrorAppend("[Worker] Failed to create GTAUtil folder. Stacktrace: " + ex);
-            }
-        }
-
-        private async void btnAddQueue_Click(object sender, EventArgs e)
-        {
-            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
-            dialog.InitialDirectory = "C:\\Users";
-            dialog.IsFolderPicker = true;
-            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
-            {
-                folderPath.Text = dialog.FileName;
-                if (checkGtaFolder())
-                {
-                    await makeGtaUtilFolder(ytd2large.HashHelpers.Helpers.GetExeLocalAppDataUserConfigPath(Path.Combine(Directory.GetCurrentDirectory(), @"library\gtautil\GTAUtil.exe")), dialog.FileName);
-                    btnStart.Enabled = true;
-                    folderStatus.Text = "OK";
-                    folderStatus.ForeColor = Color.Green;
-                }
-                else
-                {
-                    btnStart.Enabled = false;
-                    folderStatus.Text = "NOT SET";
-                    folderStatus.ForeColor = Color.Red;
-                }
-            }
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
+            startConversion();
         }
 
         private void reslua_TextChanged(object sender, EventArgs e)
@@ -492,17 +434,12 @@ namespace ytd2large
 
         }
 
-        private void checkBox1_CheckedChanged_2(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void queueList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
         {
 
         }

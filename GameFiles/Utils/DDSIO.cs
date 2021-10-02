@@ -241,13 +241,18 @@ namespace CodeWalker.Utils
                             for (int level = 0; level < meta.mipLevels; ++level, ++index)
                             {
                                 if (index >= nimages)
+                                {
                                     throw new Exception("Tried to write mip out of range");
+                                }
                                 if (images[index].rowPitch <= 0)
+                                {
                                     throw new Exception("Invalid row pitch.");
+                                }
                                 if (images[index].slicePitch <= 0)
-                                    throw new Exception("Invalid slice pitch.");
-                                //if (images[index].pixels)
-                                //    return E_POINTER;
+                                {
+                                    //throw new Exception("Invalid slice pitch.");
+                                    return Encoding.ASCII.GetBytes("skip"); // This seems like a stupid solution, please don't slaughter me for doing this. If anyone can provide a better fix than this, please fork & PR.
+                                }
 
                                 int ddsRowPitch, ddsSlicePitch;
                                 DXTex.ComputePitch(meta.format, images[index].width, images[index].height, out ddsRowPitch, out ddsSlicePitch, 0);// CP_FLAGS.CP_FLAGS_NONE);
@@ -1204,13 +1209,13 @@ namespace CodeWalker.Utils
                     }
                 }
 
-                if ((flags & (uint)DDS_FLAGS.DDS_FLAGS_FORCE_DX10_EXT_MISC2)!=0)
+                if ((flags & (uint)DDS_FLAGS.DDS_FLAGS_FORCE_DX10_EXT_MISC2) != 0)
                 {
                     flags |= (uint)DDS_FLAGS.DDS_FLAGS_FORCE_DX10_EXT;
                 }
 
                 DDS_PIXELFORMAT ddpf = new DDS_PIXELFORMAT(0);
-                if (!((flags & (uint)DDS_FLAGS.DDS_FLAGS_FORCE_DX10_EXT)!=0))
+                if (!((flags & (uint)DDS_FLAGS.DDS_FLAGS_FORCE_DX10_EXT) != 0))
                 {
                     switch (metadata.format)
                     {
@@ -1294,10 +1299,10 @@ namespace CodeWalker.Utils
                 {
                     header.dwFlags |= DDS_HEADER_FLAGS_MIPMAP;
 
-//# ifdef _M_X64
-//                    if (metadata.mipLevels > 0xFFFFFFFF)
-//                        return E_INVALIDARG;
-//#endif
+                    //# ifdef _M_X64
+                    //                    if (metadata.mipLevels > 0xFFFFFFFF)
+                    //                        return E_INVALIDARG;
+                    //#endif
 
                     header.dwMipMapCount = (uint)(metadata.mipLevels);
 
@@ -1308,21 +1313,21 @@ namespace CodeWalker.Utils
                 switch (metadata.dimension)
                 {
                     case TEX_DIMENSION.TEX_DIMENSION_TEXTURE1D:
-//# ifdef _M_X64
-//                        if (metadata.width > 0xFFFFFFFF)
-//                            return E_INVALIDARG;
-//#endif
+                        //# ifdef _M_X64
+                        //                        if (metadata.width > 0xFFFFFFFF)
+                        //                            return E_INVALIDARG;
+                        //#endif
 
                         header.dwWidth = (uint)(metadata.width);
                         header.dwHeight = header.dwDepth = 1;
                         break;
 
                     case TEX_DIMENSION.TEX_DIMENSION_TEXTURE2D:
-//# ifdef _M_X64
-//                        if (metadata.height > 0xFFFFFFFF
-//                             || metadata.width > 0xFFFFFFFF)
-//                            return E_INVALIDARG;
-//#endif
+                        //# ifdef _M_X64
+                        //                        if (metadata.height > 0xFFFFFFFF
+                        //                             || metadata.width > 0xFFFFFFFF)
+                        //                            return E_INVALIDARG;
+                        //#endif
 
                         header.dwHeight = (uint)(metadata.height);
                         header.dwWidth = (uint)(metadata.width);
@@ -1336,12 +1341,12 @@ namespace CodeWalker.Utils
                         break;
 
                     case TEX_DIMENSION.TEX_DIMENSION_TEXTURE3D:
-//# ifdef _M_X64
-//                        if (metadata.height > 0xFFFFFFFF
-//                             || metadata.width > 0xFFFFFFFF
-//                             || metadata.depth > 0xFFFFFFFF)
-//                            return E_INVALIDARG;
-//#endif
+                        //# ifdef _M_X64
+                        //                        if (metadata.height > 0xFFFFFFFF
+                        //                             || metadata.width > 0xFFFFFFFF
+                        //                             || metadata.depth > 0xFFFFFFFF)
+                        //                            return E_INVALIDARG;
+                        //#endif
 
                         header.dwFlags |= DDS_HEADER_FLAGS_VOLUME;
                         header.dwCaps2 |= DDS_FLAGS_VOLUME;
@@ -1357,11 +1362,11 @@ namespace CodeWalker.Utils
                 int rowPitch, slicePitch;
                 ComputePitch(metadata.format, metadata.width, metadata.height, out rowPitch, out slicePitch, 0);// (uint)CP_FLAGS.CP_FLAGS_NONE);
 
-//# ifdef _M_X64
-//                if (slicePitch > 0xFFFFFFFF
-//                     || rowPitch > 0xFFFFFFFF)
-//                    return E_FAIL;
-//#endif
+                //# ifdef _M_X64
+                //                if (slicePitch > 0xFFFFFFFF
+                //                     || rowPitch > 0xFFFFFFFF)
+                //                    return E_FAIL;
+                //#endif
 
                 if (IsCompressed(metadata.format))
                 {
@@ -1388,16 +1393,16 @@ namespace CodeWalker.Utils
                     ext.dxgiFormat = metadata.format;
                     ext.resourceDimension = (uint)metadata.dimension;
 
-//# ifdef _M_X64
-//                    if (metadata.arraySize > 0xFFFFFFFF)
-//                        return E_INVALIDARG;
-//#endif
+                    //# ifdef _M_X64
+                    //                    if (metadata.arraySize > 0xFFFFFFFF)
+                    //                        return E_INVALIDARG;
+                    //#endif
 
                     //static_assert(TEX_MISC_TEXTURECUBE == DDS_RESOURCE_MISC_TEXTURECUBE, "DDS header mismatch");
 
                     ext.miscFlag = metadata.miscFlags & ~((uint)TEX_MISC_FLAG.TEX_MISC_TEXTURECUBE);
 
-                    if ((metadata.miscFlags & (uint)TEX_MISC_FLAG.TEX_MISC_TEXTURECUBE)!=0)
+                    if ((metadata.miscFlags & (uint)TEX_MISC_FLAG.TEX_MISC_TEXTURECUBE) != 0)
                     {
                         ext.miscFlag |= (uint)TEX_MISC_FLAG.TEX_MISC_TEXTURECUBE;
                         assert((metadata.arraySize % 6) == 0);
@@ -1415,7 +1420,7 @@ namespace CodeWalker.Utils
                     //static_assert(TEX_ALPHA_MODE_OPAQUE == DDS_ALPHA_MODE_OPAQUE, "DDS header mismatch");
                     //static_assert(TEX_ALPHA_MODE_CUSTOM == DDS_ALPHA_MODE_CUSTOM, "DDS header mismatch");
 
-                    if ((flags & (uint)DDS_FLAGS.DDS_FLAGS_FORCE_DX10_EXT_MISC2)!=0)
+                    if ((flags & (uint)DDS_FLAGS.DDS_FLAGS_FORCE_DX10_EXT_MISC2) != 0)
                     {
                         // This was formerly 'reserved'. D3DX10 and D3DX11 will fail if this value is anything other than 0
                         ext.miscFlags2 = metadata.miscFlags2;
@@ -1512,7 +1517,7 @@ namespace CodeWalker.Utils
 
 
 
-                if(((DDS_PIXELFORMAT.DDS_FOURCC & header.ddspf.dwFlags) > 0) && 
+                if (((DDS_PIXELFORMAT.DDS_FOURCC & header.ddspf.dwFlags) > 0) &&
                     (DDS_PIXELFORMAT.MAKEFOURCC('D', 'X', '1', '0') == header.ddspf.dwFourCC))
                 {
                     header10.dxgiFormat = (DXGI_FORMAT)br.ReadUInt32();
@@ -1819,28 +1824,28 @@ namespace CodeWalker.Utils
             public static uint DDS_PAL8 = 0x00000020;  // DDPF_PALETTEINDEXED8
 
 
-            public static DDS_PIXELFORMAT DDSPF_DXT1 = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('D','X','T','1'), 0, 0, 0, 0, 0 );
+            public static DDS_PIXELFORMAT DDSPF_DXT1 = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('D', 'X', 'T', '1'), 0, 0, 0, 0, 0);
             public static DDS_PIXELFORMAT DDSPF_DXT2 = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('D', 'X', 'T', '2'), 0, 0, 0, 0, 0);
-            public static DDS_PIXELFORMAT DDSPF_DXT3 = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('D','X','T','3'), 0, 0, 0, 0, 0);
-            public static DDS_PIXELFORMAT DDSPF_DXT4 = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('D','X','T','4'), 0, 0, 0, 0, 0);
-            public static DDS_PIXELFORMAT DDSPF_DXT5 = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('D','X','T','5'), 0, 0, 0, 0, 0);
-            public static DDS_PIXELFORMAT DDSPF_BC4_UNORM = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('B','C','4','U'), 0, 0, 0, 0, 0);
-            public static DDS_PIXELFORMAT DDSPF_BC4_SNORM = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('B','C','4','S'), 0, 0, 0, 0, 0);
-            public static DDS_PIXELFORMAT DDSPF_BC5_UNORM = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('B','C','5','U'), 0, 0, 0, 0, 0);
-            public static DDS_PIXELFORMAT DDSPF_BC5_SNORM = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('B','C','5','S'), 0, 0, 0, 0, 0);
-            public static DDS_PIXELFORMAT DDSPF_R8G8_B8G8 = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('R','G','B','G'), 0, 0, 0, 0, 0);
-            public static DDS_PIXELFORMAT DDSPF_G8R8_G8B8 = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('G','R','G','B'), 0, 0, 0, 0, 0);
-            public static DDS_PIXELFORMAT DDSPF_YUY2 = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('Y','U','Y','2'), 0, 0, 0, 0, 0);
+            public static DDS_PIXELFORMAT DDSPF_DXT3 = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('D', 'X', 'T', '3'), 0, 0, 0, 0, 0);
+            public static DDS_PIXELFORMAT DDSPF_DXT4 = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('D', 'X', 'T', '4'), 0, 0, 0, 0, 0);
+            public static DDS_PIXELFORMAT DDSPF_DXT5 = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('D', 'X', 'T', '5'), 0, 0, 0, 0, 0);
+            public static DDS_PIXELFORMAT DDSPF_BC4_UNORM = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('B', 'C', '4', 'U'), 0, 0, 0, 0, 0);
+            public static DDS_PIXELFORMAT DDSPF_BC4_SNORM = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('B', 'C', '4', 'S'), 0, 0, 0, 0, 0);
+            public static DDS_PIXELFORMAT DDSPF_BC5_UNORM = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('B', 'C', '5', 'U'), 0, 0, 0, 0, 0);
+            public static DDS_PIXELFORMAT DDSPF_BC5_SNORM = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('B', 'C', '5', 'S'), 0, 0, 0, 0, 0);
+            public static DDS_PIXELFORMAT DDSPF_R8G8_B8G8 = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('R', 'G', 'B', 'G'), 0, 0, 0, 0, 0);
+            public static DDS_PIXELFORMAT DDSPF_G8R8_G8B8 = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('G', 'R', 'G', 'B'), 0, 0, 0, 0, 0);
+            public static DDS_PIXELFORMAT DDSPF_YUY2 = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('Y', 'U', 'Y', '2'), 0, 0, 0, 0, 0);
             public static DDS_PIXELFORMAT DDSPF_A8R8G8B8 = new DDS_PIXELFORMAT(32, DDS_RGBA, 0, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
-            public static DDS_PIXELFORMAT DDSPF_X8R8G8B8 = new DDS_PIXELFORMAT(32, DDS_RGB,  0, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0x00000000);
+            public static DDS_PIXELFORMAT DDSPF_X8R8G8B8 = new DDS_PIXELFORMAT(32, DDS_RGB, 0, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0x00000000);
             public static DDS_PIXELFORMAT DDSPF_A8B8G8R8 = new DDS_PIXELFORMAT(32, DDS_RGBA, 0, 32, 0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000);
-            public static DDS_PIXELFORMAT DDSPF_X8B8G8R8 = new DDS_PIXELFORMAT(32, DDS_RGB,  0, 32, 0x000000ff, 0x0000ff00, 0x00ff0000, 0x00000000);
-            public static DDS_PIXELFORMAT DDSPF_G16R16 = new DDS_PIXELFORMAT(32, DDS_RGB,  0, 32, 0x0000ffff, 0xffff0000, 0x00000000, 0x00000000);
+            public static DDS_PIXELFORMAT DDSPF_X8B8G8R8 = new DDS_PIXELFORMAT(32, DDS_RGB, 0, 32, 0x000000ff, 0x0000ff00, 0x00ff0000, 0x00000000);
+            public static DDS_PIXELFORMAT DDSPF_G16R16 = new DDS_PIXELFORMAT(32, DDS_RGB, 0, 32, 0x0000ffff, 0xffff0000, 0x00000000, 0x00000000);
             public static DDS_PIXELFORMAT DDSPF_R5G6B5 = new DDS_PIXELFORMAT(32, DDS_RGB, 0, 16, 0x0000f800, 0x000007e0, 0x0000001f, 0x00000000);
             public static DDS_PIXELFORMAT DDSPF_A1R5G5B5 = new DDS_PIXELFORMAT(32, DDS_RGBA, 0, 16, 0x00007c00, 0x000003e0, 0x0000001f, 0x00008000);
             public static DDS_PIXELFORMAT DDSPF_A4R4G4B4 = new DDS_PIXELFORMAT(32, DDS_RGBA, 0, 16, 0x00000f00, 0x000000f0, 0x0000000f, 0x0000f000);
             public static DDS_PIXELFORMAT DDSPF_R8G8B8 = new DDS_PIXELFORMAT(32, DDS_RGB, 0, 24, 0x00ff0000, 0x0000ff00, 0x000000ff, 0x00000000);
-            public static DDS_PIXELFORMAT DDSPF_L8 = new DDS_PIXELFORMAT(32, DDS_LUMINANCE, 0,  8, 0xff, 0x00, 0x00, 0x00);
+            public static DDS_PIXELFORMAT DDSPF_L8 = new DDS_PIXELFORMAT(32, DDS_LUMINANCE, 0, 8, 0xff, 0x00, 0x00, 0x00);
             public static DDS_PIXELFORMAT DDSPF_L16 = new DDS_PIXELFORMAT(32, DDS_LUMINANCE, 0, 16, 0xffff, 0x0000, 0x0000, 0x0000);
             public static DDS_PIXELFORMAT DDSPF_A8L8 = new DDS_PIXELFORMAT(32, DDS_LUMINANCEA, 0, 16, 0x00ff, 0x0000, 0x0000, 0xff00);
             public static DDS_PIXELFORMAT DDSPF_A8 = new DDS_PIXELFORMAT(32, DDS_ALPHA, 0, 8, 0x00, 0x00, 0x00, 0xff);
@@ -1848,7 +1853,7 @@ namespace CodeWalker.Utils
             // D3DFMT_A2R10G10B10/D3DFMT_A2B10G10R10 should be written using DX10 extension to avoid D3DX 10:10:10:2 reversal issue
 
             // This indicates the DDS_HEADER_DXT10 extension is present (the format is in dxgiFormat)
-            public static DDS_PIXELFORMAT DDSPF_DX10 = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('D','X','1','0'), 0, 0, 0, 0, 0);
+            public static DDS_PIXELFORMAT DDSPF_DX10 = new DDS_PIXELFORMAT(32, DDS_FOURCC, MAKEFOURCC('D', 'X', '1', '0'), 0, 0, 0, 0, 0);
 
 
 
@@ -2780,7 +2785,7 @@ namespace CodeWalker.Utils
         {
             var px = new byte[w * h * 4];
             var pxmax = px.Length - 3;
-            for (int i = 0; i < imgdata.Length; i+=2)
+            for (int i = 0; i < imgdata.Length; i += 2)
             {
                 byte v0 = imgdata[i];
                 byte v1 = imgdata[i + 1];
