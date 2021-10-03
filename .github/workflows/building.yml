@@ -38,7 +38,7 @@ jobs:
       if: success()
       uses: papeloto/action-zip@v1
       with:
-        files: bin/Release
+        files: bin
         dest: artifact.zip
         
     - name: Upload artifact

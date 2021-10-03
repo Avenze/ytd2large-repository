@@ -22,9 +22,7 @@ jobs:
           name: Executable Artifact
           
       - name: Extract artifact
-        uses: TonyBogdanov/zip@1.0
-        with:
-          args: unzip -qq ./artifact.zip -d ./bin
+        run: Expand-Archive -Path artifact.zip
           
       - name: Copy example.rpf from .github/workflows folder
         uses: canastro/copy-file-action@master
