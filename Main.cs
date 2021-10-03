@@ -29,16 +29,32 @@ namespace ytd2large
 
         static Dictionary<string, string> modelNames = new Dictionary<string, string>();
 
-        public Main()
+        public Main(bool runDebug)
         {
-            InitializeComponent();
-            if (!Directory.Exists("./logs"))
+            if (runDebug == false)
             {
-                Directory.CreateDirectory("logs");
+                InitializeComponent();
+                if (!Directory.Exists("./logs"))
+                {
+                    Directory.CreateDirectory("logs");
+                }
+                if (!File.Exists(@"./logs/latest.log"))
+                {
+                    FileStream fs = File.Create(@"./logs/latest.log");
+                }
             }
-            if (!File.Exists(@"./logs/latest.log"))
+            else
             {
-                FileStream fs = File.Create(@"./logs/latest.log");
+                if (!Directory.Exists("./logs"))
+                {
+                    Directory.CreateDirectory("logs");
+                }
+                if (!File.Exists(@"./logs/latest.log"))
+                {
+                    FileStream fs = File.Create(@"./logs/latest.log");
+                }
+
+                startConversion(true);
             }
         }
 
@@ -230,7 +246,6 @@ namespace ytd2large
                                     {
                                         if (entry.NameLower.EndsWith(extension))
                                         {
-
                                             if (extension.Equals(".ytd"))
                                             {
                                                 if (true) // Too lazy to retab the code.
@@ -348,10 +363,10 @@ namespace ytd2large
         }
 
         // Conversion Functions
-        public async Task startConversion()
+        public async Task startConversion(bool debug)
         {
             // Set up cache folder
-            LogAppend("[Worker] Setting up cache folders."); 
+            LogAppend("[Worker] Setting up cache folders.");
             try
             {
                 Directory.CreateDirectory(@".\cache\ytds\");
@@ -402,7 +417,7 @@ namespace ytd2large
             }
 
             // Moving resized .ytd files from /cache/rpfunpack to /output.
-            string[] ytdFiles = Directory.GetFiles("cache/ytds/", "*.ytd", SearchOption.AllDirectories);
+            string[] ytdFiles = Directory.GetFiles(@"cache\ytds\", "*.ytd", SearchOption.AllDirectories);
 
             foreach (var ytdFile in ytdFiles)
             {
@@ -411,10 +426,8 @@ namespace ytd2large
             }
 
             // Clean up like you just murdured someone.
-            Directory.Delete("cache", true); 
+            Directory.Delete("cache", true);
             //Directory.Delete("input", true);
-            //File.Delete(@"cache\dlc.rpf"); // Will cause issues next time the program is used unless we delete it.
-
         }
 
         // Events
@@ -426,7 +439,7 @@ namespace ytd2large
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            startConversion();
+            startConversion(false);
         }
 
         private void reslua_TextChanged(object sender, EventArgs e)

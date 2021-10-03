@@ -10,11 +10,24 @@ namespace ytd2large
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] arguments)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+            if (arguments == null)
+            {
+                Console.WriteLine("No arguments passed, continuing with execution as usual.");
+
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new Main(false));
+            }
+            else
+            {
+                Console.WriteLine("Arguments passed, running it in debug mode...");
+
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new Main(true));
+            }
         }
     }
 }
