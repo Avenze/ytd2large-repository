@@ -1,0 +1,37 @@
+name: Test .NET executable
+
+on:
+  repository_dispatch:
+    types: [trigger-test-workflow]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: windows-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.client_payload.sha }}
+
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: dotnet.yml
+          workflow_conclusion: success
+          name: Executable Artifact
+          
+      - name: Extract artifact
+        uses: TonyBogdanov/zip@1.0
+        with:
+          args: unzip -qq ./artifact.zip -d ./bin
+          
+      - name: Copy example.rpf from .github/workflows folder
+        uses: canastro/copy-file-action@master
+        with:
+          source: "./.github/workflows/example.rpf"
+          target: "./bin/Release/input/"
+          
+      - name: Run
+        run: ./bin/Release/ytd2large.exe --debug
+
