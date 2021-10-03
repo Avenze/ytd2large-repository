@@ -14,15 +14,21 @@ jobs:
         with:
           ref: ${{ github.event.client_payload.sha }}
 
+      - name: Create bin folder
+        run: New-Item -Path "./" -Name "bin" -ItemType "directory"
+
       - name: Download artifact
         uses: dawidd6/action-download-artifact@v2
         with:
           workflow: dotnet.yml
           workflow_conclusion: success
           name: artifact
-          
-      - name: Extract artifact
-        run: Move-Item -Path ./Resources/example.rpf -Destination ./bin/Release/input
+
+      - name: Move Release folder
+        run: Move-Item -Path "./Release" -Destination "./bin"
+
+      - name: Move example.rpf
+        run: Move-Item -Path "./Resources/example.rpf" -Destination "./bin/Release/input"
           
       - name: Run
         run: ./bin/Release/ytd2large.exe --debug
