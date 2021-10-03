@@ -1,4 +1,4 @@
-name: .NET
+name: Build .NET executable
 
 on:
   push:
@@ -33,3 +33,26 @@ jobs:
       
     - name: Test
       run: dotnet test ytd2large.sln --no-build --verbosity normal
+      
+    - name: Archive executables
+      if: success()
+      uses: papeloto/action-zip@v1
+      with:
+        files: bin/Release
+        dest: artifact.zip
+        
+    - name: Upload artifact
+      if: success()
+      uses: actions/upload-artifact@v2
+      with:
+        name: Executable Artifact
+        path: artifact.zip
+        
+    - name: Trigger next workflow
+      if: success()
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.REPO_GHA_PAT }}
+        repository: ${{ github.repository }}
+        event-type: trigger-test-workflow
+        client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
