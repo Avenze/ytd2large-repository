@@ -1,3 +1,5 @@
 bin
 obj
 .vs
+bin
+ytd2large.csproj.user
