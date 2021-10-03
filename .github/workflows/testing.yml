@@ -23,11 +23,9 @@ jobs:
           
       - name: Extract artifact
         run: Expand-Archive -Path artifact.zip
-          shell: pwsh
           
       - name: Extract artifact
         run: Move-Item -Path .github/workflows/example.rpf -Destination bin/Release/Input
-          shell: pwsh
           
       - name: Run
         run: ./bin/Release/ytd2large.exe --debug
