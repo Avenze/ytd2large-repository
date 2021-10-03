@@ -33,20 +33,16 @@ jobs:
       
     - name: Test
       run: dotnet test ytd2large.sln --no-build --verbosity normal
-      
-    - name: Archive executables
-      if: success()
-      uses: papeloto/action-zip@v1
-      with:
-        files: bin
-        dest: artifact.zip
+
+    - name: Create input folder
+      run: New-Item -Path "./bin/Release/" -Name "input" -ItemType "directory"
         
     - name: Upload artifact
       if: success()
       uses: actions/upload-artifact@v2
       with:
-        name: Executable Artifact
-        path: artifact.zip
+        name: artifact
+        path: bin
         
     - name: Trigger next workflow
       if: success()
